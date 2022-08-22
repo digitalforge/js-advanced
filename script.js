@@ -7,7 +7,7 @@ const userData = {
   lastName: "Junior",
 }
 
-finderUser(userData)
+findUser(userData)
 
 //hidden classes
 
@@ -16,8 +16,18 @@ function Animal(x, y) {
   this.y = y
 }
 
-const obj1 = new animal(1, 2)
-const obj2 = new animal(3, 4)
+const obj1 = new Animal(1, 2)
+const obj2 = new Animal(3, 4)
 
 // Call stack + Memory Heap
-const number = 610 //allocate memory for number
+
+function subtractTwo(num) {
+  return num - 2
+}
+
+function calculate() {
+  const sumTotal = 4 + 5
+  return subtractTwo(sumTotal)
+}
+
+calculate()
