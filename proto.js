@@ -42,19 +42,26 @@ const sarah = new Elf1("Sarah", "Fists")
 console.log(sarah.__proto__)
 
 // CLASSES
-
-class Dwarf {
+class Character {
   constructor(name, weapon) {
     this.name = name
     this.weapon = weapon
   }
+
   attack() {
     return "attack with " + this.weapon
   }
 }
 
-const gimli = new Dwarf("Gimli", "Axe")
+class Dwarf extends Character {
+  constructor(name, weapon, type) {
+    super(name, weapon)
+    this.type = type
+  }
+}
 
+const gimli = new Dwarf("Gimli", "Axe", "Mining")
+console.log(gimli)
 //CLOSURES STUFF
 
 let view
@@ -130,7 +137,7 @@ const addToNum2 = (function () {
     // we return an annoymous function since we are using closures
     if (n in cache) {
       count = cache[n].count++
-      console.log(cache[n].count)
+      console.log(cache[n].n)
       const message =
         count > 1
           ? `You already used tried using ${cache[n].n} ${count} times`
@@ -139,7 +146,8 @@ const addToNum2 = (function () {
       return
     } else {
       cache[n] = { n: n + 80, count: 1 }
-      console.log(cache)
+      console.log(cache[n].n + " Long Time ")
+      // console.log(cache)
       return cache
     }
   }
@@ -176,3 +184,29 @@ function createTest(testName, testType) {
 }
 
 const testing = createTest("log", "console")
+
+// OOP Exercise
+
+class Monarch {
+  constructor(name, weapon) {
+    this.name = name
+    this.weapon = weapon
+  }
+
+  attack() {
+    return `Attack with ${this.weapon}`
+  }
+}
+
+class Queen extends Monarch {
+  constructor(name, weapon, type) {
+    super(name, weapon)
+    this.type = type
+  }
+
+  attack() {
+    return super.attack() + `. I am ${this.name} of ${this.type}. Bow before me`
+  }
+}
+
+const victoria = new Queen("Victoria", "Army", "Hearts")
