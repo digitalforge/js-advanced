@@ -56,3 +56,14 @@ a:hover {
   margin: 0 auto;
   margin-bottom: 15px;
 }
+
+.cart {
+  width: 600px;
+  height: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
