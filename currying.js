@@ -1,4 +1,4 @@
-//currying - take a func that takes ple params and usuing currying modify it so it takes one thing at a time
+//currying - take a func that takes multiple params and usuing currying modify it so it takes one thing at a time
 
 const multiply = function (a, b) {
   return a * b
