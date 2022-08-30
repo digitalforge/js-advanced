@@ -6,22 +6,55 @@ const user = {
   purchases: [],
 }
 
-let cartButtons = Array.from(document.getElementsByClassName("add-to-cart"))
-let cartCount = document.querySelector(".cart-count")
+let amazonHistory = []
 
-cartButtons.forEach(function (button) {
-  let product = button.getAttribute("data-item")
-  button.addEventListener("click", function () {
-    console.log(this)
-    addToCart(product, button)
-  })
-})
+const compose =
+  (f, g) =>
+  (...args) =>
+    f(g(...args))
 
-function addToCart(product, button) {
-  user.cart.push(product)
-  cartCount.innerText = user.cart.length
-  button.innerText = "Remove From Cart"
-  button.classList.remove("add-to-cart")
-  button.classList.add("remove-from-cart")
-  console.log(user.cart)
+purcahseItem(
+  emptyCart,
+  buyItem,
+  applyTaxToItems,
+  addItemToCart
+)(user, { name: "laptop", price: 200 })
+
+function purcahseItem(...fns) {
+  //return Object.assign({}, user, { purchases: item })
+  return fns.reduce(compose)
 }
+
+function addItemToCart(user, item) {
+  amazonHistory.push(user)
+  const updateCart = user.cart.concat(item)
+  return Object.assign({}, user, { cart: updateCart })
+}
+
+function applyTaxToItems(user) {
+  amazonHistory.push(user)
+  const { cart } = user
+  const taxRate = 1.3
+  const updateCart = cart.map((item) => {
+    return {
+      name: item.name,
+      price: item.price * taxRate,
+    }
+  })
+  return Object.assign({}, user, { cart: updateCart })
+}
+
+function buyItem(user) {
+  amazonHistory.push(user)
+  return Object.assign({}, user, { purchases: user.cart })
+}
+
+function emptyCart(user) {
+  amazonHistory.push(user)
+  return Object.assign({}, user, { cart: [] })
+}
+// Implement a cart feature:
+// 1. Add items to cart.
+// 2. Add 3% tax to item in cart
+// 3. Buy item: cart --> purchases
+// 4. Empty the cart
