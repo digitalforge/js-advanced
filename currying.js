@@ -11,8 +11,7 @@ const curriedMultiply = (a) => (b) => a * b
 
 const curriedMultiply2 = function (a) {
   return function (b) {
-    M
-    a * b
+    return a * b
   }
 }
 

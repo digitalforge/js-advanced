@@ -12,7 +12,16 @@ const compose =
   (f, g) =>
   (...args) =>
     f(g(...args))
-
+let count = 0
+const pipe = function (prev, curr) {
+  count++
+  console.log(`Times pipe called - ${count}`)
+  console.log(`prev: ${prev}`)
+  console.log(`curr: ${curr}`)
+  return function (...args) {
+    return curr(prev(...args))
+  }
+}
 purcahseItem(
   emptyCart,
   buyItem,
@@ -20,13 +29,24 @@ purcahseItem(
   addItemToCart
 )(user, { name: "laptop", price: 200 })
 
+purcahseItem2(
+  addItemToCart,
+  applyTaxToItems,
+  buyItem,
+  emptyCart
+)(user, { name: "laptop", price: 200 })
+
+function purcahseItem2(...fns) {
+  return fns.reduce(pipe)
+}
+
 function purcahseItem(...fns) {
-  //return Object.assign({}, user, { purchases: item })
   return fns.reduce(compose)
 }
 
 function addItemToCart(user, item) {
   amazonHistory.push(user)
+  console.log(amazonHistory)
   const updateCart = user.cart.concat(item)
   return Object.assign({}, user, { cart: updateCart })
 }
