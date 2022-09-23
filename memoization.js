@@ -17,7 +17,7 @@ const addToNum2 = (function () {
   return function (num) {
     if (num in cache) {
       console.log(`Fast ${cache[num]}`)
-      return c
+      return cache
     } else {
       cache[num] = num + 80
       console.log(`Slow ${cache[num]}`)

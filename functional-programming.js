@@ -1,3 +1,22 @@
+// no side effects
+// input --> output
+
+const array = [1, 2, 3]
+function mutateArray(arr) {
+  // this function has side effects because it modifies the array outside of itself
+  arr.pop()
+}
+
+function mutateArray2(arr) {
+  arr.forEach((item) => {
+    arr.push(1)
+  })
+}
+
+mutateArray(array)
+mutateArray2(array)
+console.log(array)
+
 // Idempotence: Being able to call something over and over and always getting the same results. Why is this good? Because it makes our code predictable
 
 function notGood(num) {
@@ -14,6 +33,12 @@ Declarative code tells the machine what to do and WHAT SHOULD happen, not how to
 FUNCTIONAL PROGRAMMING LETS US BE MORE DECLARATIVE 
 
 */
+
+for (let i = 0; i < 1000; i++) {
+  console.log(i) // this is a more imperative way
+}
+
+;[1, 2, 3].forEach((item) => console.log(item)) // this is more declarative because we use less instruction
 
 // Immutability - not changing the data or state - but rather making copies of it and returning a new state everytime
 
