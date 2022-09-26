@@ -15,6 +15,7 @@ function addToNum(num) {
 const addToNum2 = (function () {
   let cache = {} // we put the cache inside the function to not pollute the global scope
   return function (num) {
+    // this is also a closure
     if (num in cache) {
       console.log(`Fast ${cache[num]}`)
       return cache

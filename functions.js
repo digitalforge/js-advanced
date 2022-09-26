@@ -83,3 +83,25 @@ console.log(
     return x
   })
 )
+
+// Memoization using closures
+
+const addToNum = (function () {
+  let cache = {}
+  return function (num) {
+    if (num in cache) {
+      console.log(`This is the cached value ${cache[num]}`)
+      return cache
+    } else {
+      cache[num] = num + 80
+      console.log(`This is the non cached value ${cache[num]}`)
+      return cache
+    }
+  }
+})()
+
+addToNum(10)
+addToNum(10)
+addToNum(10)
+addToNum(10)
+addToNum(10)
