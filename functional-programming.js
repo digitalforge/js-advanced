@@ -66,17 +66,24 @@ console.log(obj, updatedObj)
 const hof = () => () => 5 // a function that returns a function
 
 const hof2 = (fn) => fn(5) // a function that takes a function as a parameter
+hof2(function a(x) {
+  return x
+})
 
-// Closure - a method of containing some sort of state
+// Closure - a method of containing some sort of state - we simply define a function inside another function
 
 const closure = function () {
   let count = 0
   return function increment() {
     count++
+    console.log(count)
     return count
   }
 }
 const incrementFn = closure()
+incrementFn()
+incrementFn()
+incrementFn()
 
 // The above function actually modifies 'count' so it is not pure
 
@@ -93,3 +100,12 @@ const getCounter = dataPrivacy()
 
 // now as a user I can't modify the count
 // This is important in functional programming because we don't want to modify the state of anything
+
+// CURRYING
+const multiply = (a, b) => a * b
+const curriedMultiply = (a) => (b) => a * b
+
+const curriedMultiplyBy5 = curriedMultiply(5) //  this fires off the first function and because it uses closures we don't have to run it over and over and then we can do this:
+
+curriedMultiplyBy5(3) // 5 * 3 = 15
+curriedMultiplyBy5(4) // 5 * 4 = 20
