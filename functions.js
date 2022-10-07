@@ -56,7 +56,7 @@ Dwarf.prototype.attack = function () {
 const gimli = new Dwarf("Gimli", "Axe")
 console.log(gimli)
 
-// Some immutability stuff - meaning we don't want to change the state of the object but rather create a new one and then update that one instead- this sort of seems memory intensive? I'll have to look up 'Structual Sharing' - this is the concept that the data we used doesn't get completely copied but only the parts that we want to update.
+// Some immutability stuff - meaning we don't want to change the state of the object but rather create a new one and then update that one instead- this sort of seems memory intensive? I'll have to look up 'Structual Sharing' - this is the concept that the data we us doesn't get completely copied but only the parts that we want to update.
 
 const person = {
   name: "Jon",

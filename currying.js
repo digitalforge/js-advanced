@@ -1,29 +1,24 @@
-//currying - take a func that takes multiple params and usuing currying modify it so it takes one thing at a time
+//currying - take a func that takes multiple params and using currying modify it so it takes one thing at a time
 
-const multiply = function (a, b) {
-  return a * b
-}
+const multiply = (a, b) => a * b
+multiply(3, 4) // 12
 
-multiply(3, 4)
+// How can we use currying here? We want to change the func from taking multiple params to taking one at a time
 
 const curriedMultiply = (a) => (b) => a * b
-// or
-
-const curriedMultiply2 = function (a) {
+const curriedMultiplyLong = function (a) {
   return function (b) {
     return a * b
   }
 }
 
-curriedMultiply(5)(3)
-
-const curriedMultiplyBy5 = curriedMultiply(5) // we can cache this by using closures and it will be there for us to use
-curriedMultiplyBy5(4) // that was we don't have to keep running 2 functions
+const curriedMultiplyByFive = curriedMultiply(5)
+curriedMultiplyByFive(3) // 15
 
 // Partial Application
+
 const multiply2 = (a, b, c) => a * b * c
-
-const partialMultiplyBy5 = multiply2.bind(null, 5)
+// Here we 'partially' apply the 'a' param by binding it ( null is for the this keyword )
+const partialMultiplyBy5 = multiply.bind(null, 5)
+// then we can call the rest of the params by calling the function
 partialMultiplyBy5(4, 10)
-
-multiply2.bind()

@@ -51,3 +51,23 @@ function memoizedAddTo80(n) {
     return cache[n]
   }
 }
+
+const memoizedNum = () => {
+  let cache = {}
+  return function (num) {
+    if (num in cache) {
+      console.log("Short Time " + cache[num])
+      return cache
+    } else {
+      cache[num] = num + 80
+      console.log("Long Time " + cache[num])
+      return cache
+    }
+  }
+}
+
+const addFive = memoizedNum()
+addFive(5)
+addFive(5)
+addFive(5)
+addFive(5)

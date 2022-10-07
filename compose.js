@@ -14,13 +14,13 @@
 
 // PIPE - instead of going from right to left we got from left to right
 // fn1(fn2(fn3(50)));
-// compose(fn3, fn2, fn1)(50)
+// pipe(fn3, fn2, fn1)(50)
 // const pipe = (f, g) => (data) => g(f(data))
 
 // airty - the number of arguments a function takes
 // in functional programming - a fewer number of params in a func the easier it is to use - why? Becuase it makes functions more flexible
 
-// Functional Programming - doing one thing at a time and doing it well - pure functions - allows us to have a preditable program and this minimized bugs because it keeps things simple
+// Functional Programming - doing one thing at a time and doing it well - pure functions - allows us to have a predictable program and this minimized bugs because it keeps things simple
 
 // HOW ABOUT A LITTLE REDUCE? YEAH? OK
 
@@ -65,3 +65,20 @@ console.log(
 console.log(
   `The youngest person is ${youngest.name}. ${youngest.gender} is ${youngest.age} years old`
 )
+
+const compose = function (f, g) {
+  return function (data) {
+    return g(f(data))
+  }
+}
+
+const multiplyBy3 = function (num) {
+  return num * 3
+}
+
+const makePositive = function (num) {
+  return Math.abs(num)
+}
+
+const multiplayBy3AndAbsolute = compose(multiplyBy3, makePositive)
+//console.log(multiplayBy3AndAbsolute(-50))
