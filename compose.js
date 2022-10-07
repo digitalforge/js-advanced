@@ -81,4 +81,4 @@ const makePositive = function (num) {
 }
 
 const multiplayBy3AndAbsolute = compose(multiplyBy3, makePositive)
-//console.log(multiplayBy3AndAbsolute(-50))
+console.log(multiplayBy3AndAbsolute(-50))
