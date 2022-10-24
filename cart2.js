@@ -1,72 +1,47 @@
+// Amazon cart
 const user = {
   name: "Kim",
-  isActive: true,
+  active: true,
   cart: [],
   purchases: [],
 }
 
 let amazonHistory = []
-
-const pipe =
-  (prev, curr) =>
-  (...args) =>
-    curr(prev(...args))
-
 const compose =
-  (prev, curr) =>
+  (f, g) =>
   (...args) =>
-    prev(curr(...args))
+    f(g(...args))
 
-purchaseItems(
-  addItemToCart,
-  applyTaxToItems,
-  buyItem,
-  emptyCart
-)(user, {
-  name: "Laptop",
-  price: 3000,
-})
-
-purchaseItems2(
+const purachse = purchaseItem(
   emptyCart,
   buyItem,
-  applyTaxToItems,
-  addItemToCart
-)(user, {
-  name: "Laptop",
-  price: 3000,
-})
+  applyTax,
+  addToCart
+)(user, { name: "laptop", price: 2000 })
 
-function purchaseItems(...fns) {
-  return fns.reduce(pipe)
-}
+console.log(purachse)
 
-function purchaseItems2(...fns) {
+function purchaseItem(...fns) {
   return fns.reduce(compose)
 }
 
-function addItemToCart(user, item) {
+function addToCart(user, item) {
   amazonHistory.push(user)
-  console.log(amazonHistory)
-  const { cart } = user
-  const updateCart = cart.concat(item)
-  const updatedCart = Object.assign({}, user, { cart: updateCart })
-
-  return updatedCart
+  const updateCart = user.cart.concat(item)
+  return Object.assign({}, user, { cart: updateCart })
 }
 
-function applyTaxToItems(user) {
+function applyTax(user) {
   amazonHistory.push(user)
   const { cart } = user
-  const taxRate = 0.06
+  const taxRate = 1.3
   const updateCart = cart.map((item) => {
     return {
       name: item.name,
-      price: (item.price += item.price * taxRate),
+      price: item.price * taxRate,
     }
   })
-  const updatedCart = Object.assign({}, user, { cart: updateCart })
-  return updatedCart
+  return Object.assign({}, user, { cart: updateCart })
 }
 
 function buyItem(user) {
@@ -78,3 +53,7 @@ function emptyCart(user) {
   amazonHistory.push(user)
   return Object.assign({}, user, { cart: [] })
 }
+
+function refundItem(user) {}
+
+console.log(amazonHistory)

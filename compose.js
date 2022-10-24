@@ -5,17 +5,17 @@
 // fn1(fn2(fn3(50)));
 // compose(fn1, fn2, fn3)(50)
 
-// const compose = (f, g) => (data) => f(g(data))
-// const multiplyBy3 = (num) => num * 3
-// const makePositive = (num) => Math.abs(num)
-// const multiplayBy3AndAbsolute = compose(multiplyBy3, makePositive)
+const compose = (f, g) => (data) => f(g(data))
+const multiplyBy3 = (num) => num * 3
+const makePositive = (num) => Math.abs(num)
+const multiplayBy3AndAbsolute = compose(multiplyBy3, makePositive)(-50)
 
-// multiplayBy3AndAbsolute(-50)
+multiplayBy3AndAbsolute(-50)
 
 // PIPE - instead of going from right to left we got from left to right
 // fn1(fn2(fn3(50)));
 // pipe(fn3, fn2, fn1)(50)
-// const pipe = (f, g) => (data) => g(f(data))
+const pipe = (f, g) => (data) => g(f(data))
 
 // airty - the number of arguments a function takes
 // in functional programming - a fewer number of params in a func the easier it is to use - why? Becuase it makes functions more flexible
@@ -65,20 +65,3 @@ console.log(
 console.log(
   `The youngest person is ${youngest.name}. ${youngest.gender} is ${youngest.age} years old`
 )
-
-const compose = function (f, g) {
-  return function (data) {
-    return g(f(data))
-  }
-}
-
-const multiplyBy3 = function (num) {
-  return num * 3
-}
-
-const makePositive = function (num) {
-  return Math.abs(num)
-}
-
-const multiplayBy3AndAbsolute = compose(multiplyBy3, makePositive)
-console.log(multiplayBy3AndAbsolute(-50))
