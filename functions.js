@@ -1,7 +1,7 @@
 //Classes
 
 class Character {
-  constructor(name, weapon, type) {
+  constructor(name, weapon) {
     this.name = name
     this.weapon = weapon
   }
