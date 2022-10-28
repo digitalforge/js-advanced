@@ -11,6 +11,14 @@ class Character {
   }
 }
 
+class Dwarf extends Character {
+  constructor(name, weapon, type, beardType) {
+    super(name, weapon)
+    this.type = type
+    this.beardType = beardType
+  }
+}
+
 //Composition
 
 function getAttack(character) {
