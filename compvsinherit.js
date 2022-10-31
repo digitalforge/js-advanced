@@ -38,3 +38,25 @@ function Elf(name, weapon, type) {
 
 const legolas = new Elf("Legolas", "Bow", "Wood")
 console.log(legolas.attack())
+
+// We can do this a bit different as well. Create an object called 'elfFunctions' and list out the functions we want an elf to use. Then we just use 'Object.create' in the createElf functions, add the properties to the elf, then return it.
+
+const elfFunctions = {
+  attack() {
+    return `Attack with ${this.weapon}`
+  },
+}
+
+function createElf(name, weapon, type) {
+  let newElf = Object.create(elfFunctions)
+
+  newElf.name = name
+  newElf.weapon = weapon
+  newElf.type = type
+
+  return newElf
+}
+
+const daphnie = createElf("Daphnie", "Sword", "High Elf")
+
+daphnie.attack()
