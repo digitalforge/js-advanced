@@ -23,7 +23,7 @@ class Dwarf extends Character {
 
 function getAttack(character) {
   const attack = () => `Attack with ${character.weapon}`
-  return Object.assign({}, character, { attack })
+  return Object.assign({}, character, { attack }) // Object.assign combines an objest. The first param is the staringing obj - in this case its an empy one - then the second is the object we want to add to - and the last is the what we want to add
 }
 
 function Elf(name, weapon, type) {

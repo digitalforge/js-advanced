@@ -5,17 +5,16 @@ const urls = [
   "https://jsonplaceholder.typicode.com/albums",
 ]
 
-// Promise.all(
-//   urls.map((url) => {
-//     return fetch(url).then((resp) => resp.json())
-//   })
-// )
-//   .then((results) => {
-//     throw Error
-//     console.log(results)
-//   })
-//   .catch(() => console.log("error"))
-//   .finally(() => console.log("extra")) // finally will be called whether the promise resovles or rejects
+Promise.all(
+  urls.map((url) => {
+    return fetch(url).then((resp) => resp.json())
+  })
+)
+  .then((results) => {
+    console.log(results)
+  })
+  .catch(() => console.log("error"))
+  .finally(() => console.log("extra")) // finally will be called whether the promise resovles or rejects
 
 // for await of
 
@@ -40,6 +39,8 @@ const loopThroughUrls = (urls) => {
   }
 }
 
+//loopThroughUrls(urls)
+
 const getData2 = async () => {
   const arrayOfPromises = urls.map((url) => fetch(url))
   for await (let request of arrayOfPromises) {
@@ -48,4 +49,16 @@ const getData2 = async () => {
   }
 }
 
-getData2()
+//getData2()
+
+const getData3 = async () => {
+  //.map() method returns a NEW array with the results of calling a provided function on every element in this array.
+  const fetchRequests = urls.map((url) => fetch(url))
+
+  for await (request of fetchRequests) {
+    const data = await request.json()
+    console.log(data)
+  }
+}
+
+//getData3()
