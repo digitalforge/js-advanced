@@ -59,6 +59,8 @@ function emptyCart(user) {
   return Object.assign({}, user, { cart: [] })
 }
 
+// Module Pattern
+
 var globalsecret = "1234"
 var fight = "punch"
 
