@@ -12,6 +12,12 @@ const multiplayBy3AndAbsolute = compose(multiplyBy3, makePositive)(-50)
 
 multiplayBy3AndAbsolute(-50)
 
+const compose2 = (a, b) => {
+  return (data) => {
+    return a(b(data))
+  }
+}
+
 // PIPE - instead of going from right to left we got from left to right
 // fn1(fn2(fn3(50)));
 // pipe(fn3, fn2, fn1)(50)
