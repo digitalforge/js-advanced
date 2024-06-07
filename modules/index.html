@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <!-- <script type="module" src="./script.js"></script> -->
+    <script type="module">
+      import { fight2 } from "./script.js"
+
+      console.log(fight2("Ron", "Bob"))
+    </script>
+    <script>
+      var fight = "Punch"
+      let globalSecret = "1234"
+    </script>
+    <script>
+      var script2 = (function (globalSecret) {
+        //some code
+        globalSecret = "0" // right now we've overwritten the globalSecret variable because its global - how to we remedy this? We pass it as a parameter which will make it locally scoped and will only change the one that's local
+      })(globalSecret)
+    </script>
+  </body>
+</html>
