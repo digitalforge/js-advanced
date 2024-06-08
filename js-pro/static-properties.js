@@ -49,8 +49,12 @@ class MyMath {
 }
 
 class ArrayUtils {
+  constructor() {
+    throw new Error('This class cannot be instantiated.')
+  }
+
   static average(nums) {
-    if (nums.length <= 0) throw new Error('Array cannot be empty')
+    if (nums.length <= 0) throw new Error('Array cannot be empty.')
     let total = 0
     nums.forEach(num => (total += num))
     let average = total / nums.length
